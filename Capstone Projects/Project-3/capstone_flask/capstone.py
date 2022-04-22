@@ -21,21 +21,11 @@ def prediction(amount, v3, v4, v7, v10, v11, v12, v14, v16, v17, model='rf_model
               'V17':float(v17),
               'Amount':float(amount)}
     features = pd.DataFrame(new_df, index=[0])
-    
-    # final_scaler = pickle.load(open(scaler, 'rb'))
-    # scaler = RobustScaler()
-    # data = pd.read_csv(df)
-    # scaler.fit(data)
 
     rf_model = joblib.load(open(model, 'rb'))
 
-    # use_df = final_scaler.transform(features)
-
-    # final_model = load_model(model)
-
     prediction = rf_model.predict(features)
-    # d = prediction[0][0]
-    # return round(d,2)
+    
     return prediction
 
 @app.route('/', methods=['POST', 'GET'])
